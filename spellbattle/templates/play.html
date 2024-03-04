@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Let's Play Spell Battle!
+{% endblock %}
+
+{% block main %}
+
+    <!-- Score Box -->
+    <div id="score-box">
+        Score: <span id="score-value">100</span>
+        &nbsp;&nbsp;  <!-- Add some spacing -->
+        Tries: <span id="tries-value">10</span>
+    </div>
+
+    <!-- Game Board -->
+    <div id="game-board"></div>
+
+    <!-- Keyboard -->
+    <div id="virtual-keyboard" role="group" aria-label="Keyboard"></div>
+
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content">
+            <div id="info-container-header" class="info-container-header">
+                <h2 id="game-over-title"></h2>
+            </div>
+            <div id="word-details"></div>
+            <div class="score-details">
+                <span id="game-score"></span>
+                <span id="total-score"></span>
+            </div>
+            <div class="buttons">
+                <form id="changeSettingsForm" method="post" action="/">
+                    <button type="submit" class="btn btn-outline-success">Change Settings</button>
+                </form>
+                <form id="playAgainForm" method="post" style="display: inline-block;">
+                    <button type="submit" id="play-again" class="btn btn-outline-success">Play Again</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        let wordLength = {{ word_length }}
+        let txb_bool = {{ txb_bool|lower }}
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/play.js"></script>
+
+{% endblock %}

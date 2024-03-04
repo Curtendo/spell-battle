@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            Select a stock symbol and number of shares to sell.
+        </div>
+        <div>
+            <div class="mb-3">
+                <select class="form-control mx-auto w-auto" id="symbol" name="symbol">
+                    <option class="disabled" value="" selected disabled>Choose Stock</option>
+                    {% for row in stock_row %}
+                        <option value="{{ row.stock }}" data-total-shares="{{ row.total_shares }}">
+                            {{ row.stock }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3" id="totalSharesDisplay"></div>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares to sell" min=1 type="number">
+            </div>
+            <button class="btn btn-primary" type="submit">Sell</button>
+        </div>
+    </form>
+
+    <script>
+        window.onload = function() {
+            var selectElement = document.getElementById('symbol');
+            selectElement.addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var totalShares = selectedOption.getAttribute('data-total-shares');
+                var displayElement = document.getElementById('totalSharesDisplay');
+                displayElement.textContent = 'Total shares: ' + totalShares;
+            });
+        };
+    </script>
+{% endblock %}

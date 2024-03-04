@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th class="numeric">Shares</th>
+                    <th class="numeric">Price</th>
+                    <th class="numeric">Total</th>
+                    <th class="numeric">Date and Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {% for row in stock_row %}
+                    <tr>
+                        <td>{{ row.stock }}</td>
+                        <td class="numeric">{{ row.shares }}</td>
+                        <td class="numeric">{{ row.price | usd }}</td>
+                        <td class="numeric {{ 'positive' if row.total > 0 else 'negative' if row.total < 0 else 'zero' }}">{{ row.total | usd }}</td>
+                        <td class="numeric">{{ row.time }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

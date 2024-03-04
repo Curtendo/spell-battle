@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div>
+        Stock: {{ quote.name }}
+    </div>
+    <div>
+        Price per share: {{ quote.price | usd }}
+    </div>
+{% endblock %}

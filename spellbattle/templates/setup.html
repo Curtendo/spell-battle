@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Spell Battle
+{% endblock %}
+
+{% block main %}
+    <div class="info-container">
+        <div id="info-container-header">Word Selection</div>
+        <div id="word-selection">
+            <input type="radio" id="textbook-words" name="word-selection" value="textbook" checked>
+            <label for="textbook-words">Textbook words</label>
+
+            <input type="radio" id="custom-words-radio" name="word-selection" value="custom">
+            <label for="custom-words-radio">Custom words</label>
+        </div>
+        
+        <div id="word-length-container" style="display: none;"> <!-- Hidden initially -->
+            <div>Choose Word Length:</div>
+            <input id="word-length-slider" type="text" class="span2" value="" data-slider-min="3" data-slider-max="14" data-slider-step="1" data-slider-value="[3,14]"/>
+            <div class="slider-values">
+              <span id="min-value-display"></span> - <span id="max-value-display"></span>
+            </div>
+        </div>
+
+        <div id="textbook-controls" style="display: block;">
+            <div class="from-to-container">
+                <div class="control-option" id="set-from">From</div>
+                <span id="from-display"></span>
+            </div>
+            <div class="from-to-container">
+                <div class="control-option" id="set-to">To</div>
+                <span id="to-display"></span>
+            </div>
+        </div>
+
+        <hr id="top-divider" class="divider">
+
+        <div id="textbook-selection">
+            <div id="textbooks">
+                {% for grade in grades %}
+                    <div class="textbook-option" data-grade="{{ grade[0] }}">New Horizon {{ grade[0] }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="units-lessons-container">
+            <div id="units">
+                {% for unit in units %}
+                    <div class="unit-option" data-grade="{{ unit[0] }}" data-unit="{{ unit[1] }}">Unit {{ unit[1] }}</div>
+                {% endfor %}
+            </div>
+            <div id="lessons">
+                {% for lesson in lessons %}
+                    <div class="lesson-option" data-grade="{{ lesson[0] }}" data-unit="{{ lesson[1] }}" data-lesson="{{ lesson[2] }}">{{ lesson[2] }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="custom-words" style="display: none;">
+            <textarea placeholder="Enter your words, one per line"></textarea>
+        </div>
+
+        <hr id="bottom-divider" class="divider">
+
+        <div id="submit-button-container">
+            <button type="button" id="settings-back" class="btn btn-outline-success" style="visibility: hidden;">Back</button>
+            <button type="button" id="submit-range" class="btn btn-outline-success">OK</button>
+            <form id="start-form-textbook" action="/pull_textbook_word" method="post" style="display: none;" >
+                <input type="hidden" id="min-length" name="min_length" value="">
+                <input type="hidden" id="max-length" name="max_length" value="">
+                <button type="submit" id="start-game-textbook" class="btn btn-outline-success" style="display: none;">Start</button>
+            </form>
+            <form id="start-form-custom" action="/pull_custom_word" method="post" style="display: none;">
+                <input type="hidden" id="custom-words-input" name="custom_words" value="">
+                <button type="submit" id="start-game-custom" class="btn btn-outline-success" style="display: none;">Start</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="/static/setup.js"></script>
+
+{% endblock %}

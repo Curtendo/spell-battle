@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Spell Battle
+{% endblock %}
+
+{% block main %}
+    <!-- Textbook buttons -->
+    <div class="info-container">
+        <div id="info-container-header">Word Selection</div>
+        <div id="word-selection">
+            <input type="radio" id="textbook-words" name="word-selection" value="textbook" checked>
+            <label for="textbook-words">Textbook words</label>
+
+            <input type="radio" id="custom-words-radio" name="word-selection" value="custom">
+            <label for="custom-words-radio">Custom words</label>
+        </div>
+
+        <div id="textbook-controls" style="display: block;"> <!-- initially visible because Textbook Words is checked by default -->
+            <div class="control-option" id="set-from">From</div>
+            <div class="control-option" id="set-to">To</div>
+            <div class="control-option" id="select-lessons">Select</div>
+        </div>
+        
+        <hr class="divider">
+
+        <div id="textbook-selection">
+            <div id="textbooks">
+                <div class="textbook-option" data-level="1">New Horizon 1</div>
+                <div class="textbook-option" data-level="2">New Horizon 2</div>
+                <div class="textbook-option" data-level="3">New Horizon 3</div>
+            </div>
+        </div>
+        <div id="units-lessons-container">
+            <div id="units"></div>
+            <div id="lessons"></div>
+        </div>
+
+        <div id="custom-words" style="display: none;">
+            <textarea placeholder="Enter your words, one per line"></textarea>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/main.js"></script>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th class="numeric">Shares</th>
+                    <th class="numeric">Price</th>
+                    <th class="numeric">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th class="numeric">Stock Total</th>
+                    <td class="numeric">$0</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th class="numeric">Cash</th>
+                    <td class="numeric">{{ usercash | usd }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th class="numeric">TOTAL</th>
+                    <td class="numeric">{{ usercash | usd }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}
